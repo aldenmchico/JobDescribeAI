@@ -1,0 +1,45 @@
+// CREATE ******************************************
+
+// READ ******************************************
+
+// READ: GET Request: Check whether or not software engineer is a job title
+###
+GET http://localhost:3000/jobtitlecheck/software%20engineer HTTP/1.1
+
+// READ: GET Request: Check whether or not dog is a job title
+###
+GET http://localhost:3000/jobtitlecheck/dog HTTP/1.1
+
+// READ: GET Request: Check the educational requirements for a software engineer
+###
+GET http://localhost:3000/edrequirements/software%20engineer HTTP/1.1
+
+// READ: GET Request: Retrieve a list of institutions to become a lawyer in CA
+###
+GET http://localhost:3000/institutions/lawyer/CA HTTP/1.1
+
+// READ: GET Request: Retrieve the median cost of education to become a software engineer in CA
+###
+GET http://localhost:3000/educationcost/software%20engineer/CA HTTP/1.1
+
+// READ: GET Request: Retrieve the median salary for plumbers in california
+###
+GET http://localhost:3000/salary/plumber/CA HTTP/1.1
+
+// READ: GET Request: Retrieve a list of job openings for paralegals in california
+###
+GET http://localhost:3000/jobopenings/paralegal/CA HTTP/1.1
+
+// READ: GET Request: Retrieve a list of companies that hire lawyers in california
+###
+GET http://localhost:3000/jobcompanies/janitor/CA HTTP/1.1
+
+// READ: GET Request: Retrieve a list of skills and software used as administrative assistants
+###
+GET http://localhost:3000/jobskills/admin%20assistant HTTP/1.1
+
+
+// UPDATE ******************************************
+
+
+// DELETE ******************************************
