@@ -17,7 +17,7 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
     // After loading a Descriptions Page, set didGenerate to true to enable the Last Search button
     setDidGenerate(true);
 
-    // Create two collections for institutions and the institutions' websites
+    // Create two arrays for institutions and the institutions' websites
     let institutionNames;
     let institutionLinks = {};
     let linkBreak, numberBreak;
@@ -39,6 +39,7 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
         }
     }
 
+    // Create two arrays for companies and the companies' websites
     let companyNames;
     let companyLinks = {};
     if (descriptions.companyList !== undefined) {
@@ -57,7 +58,7 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
         }
     }
 
-    // Create collections for job search websites
+    // Create one array for job search websites
     let jobLinks;
     if (descriptions.jobResources !== undefined) {
 
@@ -69,11 +70,25 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
             jobLinks[i] = numberBreak[1]
         }
     }
+
+    // Create one array for job related skills
+    let jobSkills;
+    if (descriptions.jobSkills !== undefined) {
+
+        jobSkills = descriptions.jobSkills.split("</br>");
+        for(let i = 0; i < jobSkills.length; i++) {
+            // Parse the job link from the result
+            let iStr = (i+1).toString() + "."
+            numberBreak = jobSkills[i].split(iStr);
+            jobSkills[i] = numberBreak[1]
+        }
+    }
     
     return (
         <>
         <article className="descriptionsPage">
 
+            {/* Form for creating a new job description page */}
             <form onSubmit={(e) => { e.preventDefault();}}>
                     
                     <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
@@ -88,8 +103,10 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                     }
             </form>
 
+            {/* Displays Loading Text after submitting the form for a new job description page */}
             {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
             
+            {/* Displays information for the job description page if a value is defined in the descriptions object */}
             {descriptions.salary !== undefined && 
                 <>
                     <h2 className="descriptionTitle">Estimated Median Salary</h2>
@@ -103,6 +120,20 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                     <h2 className="descriptionTitle">Daily Work Summary</h2>
                     <p className="description">{descriptions.dailyWork}</p>
                     <br></br> <br></br>
+                </>
+            }
+
+            {descriptions.jobSkills !== undefined && 
+                <>
+                    <h2 className="descriptionTitle">List of Relavent Job Skills</h2>
+                    <ol className="description">
+                        <li>{jobSkills["0"]}</li>
+                        <li>{jobSkills["1"]}</li>
+                        <li>{jobSkills["2"]}</li>
+                        <li>{jobSkills["3"]}</li>
+                        <li>{jobSkills["4"]}</li>
+                    </ol>
+                    <br></br><br></br>
                 </>
             }
             
@@ -142,15 +173,6 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                 </>
             }
 
-            {descriptions.edRequirements !== undefined && 
-                <>
-                    <h2 className="descriptionTitle">Educational Requirements</h2>
-                    <p className="description">{descriptions.edRequirements}</p>
-                    <br></br> <br></br>
-                </>
-            }
-
-            
             {descriptions.institutions !== undefined && 
                 <>
                     <h2 className="descriptionTitle">List of Institutions</h2>
@@ -164,8 +186,19 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                     <br></br><br></br>
                 </>
             }
-            
 
+            {descriptions.edRequirements !== undefined && 
+                <>
+                    <h2 className="descriptionTitle">Educational Requirements</h2>
+                    <p className="description">{descriptions.edRequirements}</p>
+                    <br></br> <br></br>
+                </>
+            }
+
+            
+            
+            
+            {/* Buttons for navigating to other pages on the website */}
             <form onSubmit={(e) => { e.preventDefault();}}>
                 <button
                     type="submit"

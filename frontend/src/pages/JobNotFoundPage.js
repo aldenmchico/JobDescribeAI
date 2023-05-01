@@ -18,8 +18,12 @@ export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setS
     return(
         <>  
             <article className="JobInput">
-                <p className="pageDescriptor">Could not generate a job description for {submitJobTitle}</p>
+
+                {/* Error text if the job title is not valid */}
+                <p className="mainPageDescriptor">Could not generate a job description for {submitJobTitle}</p>
                 <div>
+
+                     {/* Form for creating a new job description page */}
                     <form onSubmit={(e) => { e.preventDefault();}}>
 
                         <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
@@ -34,8 +38,10 @@ export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setS
                         }
 
                     </form>
-
+                    
                     <br></br>
+
+                    {/* Button to navigate to the customize options page */}
                     <form onSubmit={(e) => { e.preventDefault();}}>
                     <button
                         type="submit"
@@ -43,9 +49,11 @@ export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setS
                         onClick={() => {history.push('/customize-page')}}
                     >Customize Options</button>
 
+                    {/* Enables / Disables the Last Search button if there is a previously generated job description */}
                     {didGenerate && <PageFunction.LastDescriptionButtonEnabled history={history}/>}
                     {!didGenerate && <PageFunction.LastDescriptionButtonDisabled history={history}/>}
 
+                    {/* Button to navigate to the home page */}
                     <label for="home"></label>
                         <button
                             type="submit"
@@ -54,6 +62,7 @@ export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setS
                         >Home</button>
                     </form>
                     
+                    {/* Displays Loading Text after submitting the form for a new job description page */}
                     {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
                 </div>
                 

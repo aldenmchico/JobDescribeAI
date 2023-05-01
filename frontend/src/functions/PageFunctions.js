@@ -1,3 +1,4 @@
+// This function returns Loading Text after the user submits their job description query
 function LoadingText({jobTitle, location}){
     return (
         <div className="LoadingText">
@@ -6,6 +7,7 @@ function LoadingText({jobTitle, location}){
     );
 }
 
+// This function returns the job title and location forms that are used to enter the job description query
 function InputForm({jobTitle, setJobTitle, setLocation}) {
     return (
         <>
@@ -80,6 +82,7 @@ function InputForm({jobTitle, setJobTitle, setLocation}) {
     );
 }
 
+// This function returns a button that enables navigation to the last search page
 function LastDescriptionButtonEnabled({history}) {
     return (
         <>
@@ -93,6 +96,7 @@ function LastDescriptionButtonEnabled({history}) {
     )
 }
 
+// This function returns a button that disables navigation to the last search page
 function LastDescriptionButtonDisabled({history}) {
     return (
         <>
@@ -107,8 +111,10 @@ function LastDescriptionButtonDisabled({history}) {
     )
 }
 
+// This function uses the options argument to make calls to backend endpoints to generate job description information for the descriptions page
 const getJobDescription = async (isJobTitle, setIsJobTitle, jobTitle, setSubmitJobTitle, history, location, setDescriptions, setIsSearch, setDidSubmit, options) => {
 
+    // Automatically push to the job not found page if there's no job entered in the entry field
     if (jobTitle === '' || jobTitle === undefined) {
         setIsSearch(false)
         setDidSubmit(false)
@@ -117,8 +123,11 @@ const getJobDescription = async (isJobTitle, setIsJobTitle, jobTitle, setSubmitJ
     }
 
     else {
+        // Run an initial check on the job title to see if it's valid
         let response = await fetch(`/jobtitlecheck/${jobTitle}`);
         const responseObject = await response.json();
+
+        // Set corresponding state variables and push to the job not found page if the page is invalid
         if (responseObject === false) {
             setIsJobTitle(false)
             setIsSearch(false)
@@ -126,8 +135,11 @@ const getJobDescription = async (isJobTitle, setIsJobTitle, jobTitle, setSubmitJ
             setSubmitJobTitle(jobTitle);
             history.push('/job-not-found');
         }
+
+        // Make calls to endpoints if a valid job title was entered in the job title entry field
         else if (responseObject === true) {
 
+            // Use the options variable to populate descriptions with responses from backend endpoints.
             const descriptions = {};
             for(let i = 0; i < options.length; i++) {
                 if (options[i] === "Daily Work") {
@@ -172,11 +184,13 @@ const getJobDescription = async (isJobTitle, setIsJobTitle, jobTitle, setSubmitJ
                 }
             }
 
+            // Set React state variables accordingly
             setDescriptions(descriptions);
             setIsJobTitle(true);
             setIsSearch(false);
             setDidSubmit(false);
 
+            // Navigate to the descriptions page
             history.push('/descriptions');
 
             

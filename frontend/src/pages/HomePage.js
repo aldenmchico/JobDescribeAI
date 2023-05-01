@@ -20,22 +20,27 @@ export const HomePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle
             <article className="homePage">
                 <h2 className="mainPageDescriptor">Enter a job title and location. We'll generate a comprehensive job description from your entry.</h2>
                 <div>
-                <form onSubmit={(e) => { e.preventDefault();}}>
-
-                    <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
-
-                    {isSearch? <AiOutlineHourglass size={50}/>:
-                    <AiOutlineSearch size={50} onClick={()=>{
-                        setDidSubmit(true);
-                        setIsSearch(!isSearch);
-                        PageFunction.getJobDescription(isJobTitle, setIsJobTitle, jobTitle, setSubmitJobTitle, 
-                            history, location, setDescriptions, setIsSearch, setDidSubmit, options);
-                        }} />
-                    }
-
-                    </form>
-                    <br></br>
+                
+                    {/* Form for creating a new job description page */}
                     <form onSubmit={(e) => { e.preventDefault();}}>
+
+                        <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
+
+                        {isSearch? <AiOutlineHourglass size={50}/>:
+                        <AiOutlineSearch size={50} onClick={()=>{
+                            setDidSubmit(true);
+                            setIsSearch(!isSearch);
+                            PageFunction.getJobDescription(isJobTitle, setIsJobTitle, jobTitle, setSubmitJobTitle, 
+                                history, location, setDescriptions, setIsSearch, setDidSubmit, options);
+                            }} />
+                        }
+                    </form>
+                    
+                    <br></br>
+
+                    <form onSubmit={(e) => { e.preventDefault();}}>
+
+                        {/* Button to navigate to the customize options page */}
                         <label for="customizeOptions"></label>
                         <button
                             type="submit"
@@ -43,9 +48,11 @@ export const HomePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle
                             onClick={() => {history.push('/customize-page')}}
                         >Customize Options</button>
                         
+                        {/* Enables / Disables the Last Search button if there is a previously generated job description */}
                         {didGenerate && <PageFunction.LastDescriptionButtonEnabled history={history}/>}
                         {!didGenerate && <PageFunction.LastDescriptionButtonDisabled history={history}/>}
-
+                        
+                        {/* Button to navigate to the about page */}
                         <label for="about"></label>
                         <button
                             type="submit"
@@ -53,7 +60,8 @@ export const HomePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle
                             onClick={() => {history.push('/about')}}
                         >About</button>
                     </form>
-
+                    
+                    {/* Displays Loading Text after submitting the form for a new job description page */}
                     {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
 
                 </div>

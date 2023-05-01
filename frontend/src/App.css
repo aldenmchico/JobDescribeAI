@@ -63,6 +63,11 @@ main {
   margin: 1% 5% 0% 10%;
 }
 
+/* CSS for About Page */
+.aboutPage{
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
 /* CSS for Loading Text*/
 .LoadingText {
   font-size: 2vh;

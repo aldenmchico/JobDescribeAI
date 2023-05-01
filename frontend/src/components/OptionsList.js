@@ -18,16 +18,22 @@ function OptionsList({options, deleteOption, addOption}) {
                 </tr>
             </thead>
             <tbody>
+
+                {/* Set the first options row separately to remove the delete button from this row */}
                 <tr>
                     <td>{options[0]}</td>
                     <td></td>
                 </tr>
+
+                {/* Generate rows on subsequent options that contain a delete button on each row */}
                 {options.slice(1).map((option, i) =>
                 <OptionsRow
                     option={option}
                     deleteOption={deleteOption}
                     key={i}
                 />)}
+
+                {/* Generate a row at the end that has a dropdown menu containing all the options that can be used to generate job descriptions */}
                 <tr>
                     <td>
                         <form onSubmit={(e) => { e.preventDefault();}}> 

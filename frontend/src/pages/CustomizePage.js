@@ -18,6 +18,7 @@ export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, job
     const [didSubmit, setDidSubmit]         = useState(false);
     const history = useHistory();
 
+    // Function that removes an option value from the options list and updates the options state variable
     const deleteOption = value => {
         let optionsCopy = options.slice();
         const idx = optionsCopy.indexOf(value);
@@ -25,6 +26,7 @@ export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, job
         setOptions(optionsCopy);
     }
 
+    // Function that adds an option value to the options list and updates the options state variable. Options that already exist cannot be added again.
     const addOption = value => {
         let optionsCopy = options.slice();
         const idx = optionsCopy.indexOf(value);
@@ -41,6 +43,7 @@ export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, job
                 <div>
                 <form onSubmit={(e) => { e.preventDefault();}}>
 
+                    {/* Form for creating a new job description page */}
                     <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
                     
                     {isSearch? <AiOutlineHourglass size={50}/>:
@@ -53,10 +56,11 @@ export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, job
                     }
 
                     <div>
-                    
+                        {/* Enables / Disables the Last Search button if there is a previously generated job description */}
                         {didGenerate && <PageFunction.LastDescriptionButtonEnabled history={history}/>}
                         {!didGenerate && <PageFunction.LastDescriptionButtonDisabled history={history}/>}
 
+                        {/* Button to navigate to the home page */}
                         <label for="home"></label>
                         <button
                             type="submit"
@@ -65,8 +69,10 @@ export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, job
                         >Home</button>
                     </div>
 
+                    {/* Displays Loading Text after submitting the form for a new job description page */}
                     {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
 
+                    {/* React component that uses the options state variable to display description customization options */}
                     <OptionsList
                         options={options}
                         setOptions={setOptions}

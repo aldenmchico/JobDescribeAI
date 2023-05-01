@@ -14,7 +14,7 @@ import AboutPage from './pages/AboutPage';
 
 function App() {
 
-  // State variables / method that is used to share data between Home Page and Descriptions Page
+  // State variables / methods that are used to share data between all of the website's pages
   const [descriptions, setDescriptions]             = useState([]);
   const [jobTitle, setJobTitle]                     = useState();
   const [submitJobTitle, setSubmitJobTitle]         = useState();
@@ -22,8 +22,7 @@ function App() {
                                                                   'Daily Work',
                                                                   'Educational Requirements',
                                                                   'Salary Information'
-                                                              ]);
-                                                            
+                                                              ]);                                                           
   const [isJobTitle, setIsJobTitle]                 = useState(false);
   const [didGenerate, setDidGenerate]               = useState(false);                                                          
 
