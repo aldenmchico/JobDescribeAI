@@ -3,7 +3,7 @@ import { React, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Import stylesheet
-import './App.css';
+//import './App.css';
 
 // Import Pages
 import HomePage from './pages/HomePage';

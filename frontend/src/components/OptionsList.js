@@ -7,7 +7,7 @@ import OptionsRow from './OptionsRow';
 
 function OptionsList({options, deleteOption, addOption}) {
 
-    const [addOptionValue, setAddOptionValue] = useState();
+    const [addOptionValue, setAddOptionValue] = useState("Educational Requirements");
     return (
         <div className="wrapper">
         <table>
@@ -38,8 +38,8 @@ function OptionsList({options, deleteOption, addOption}) {
                                     onChange={e => setAddOptionValue(e.target.value)}
                                     id="option"
                                     required>
-                                        <option value="Median Salary" selected>Median Salary</option>
                                         <option value="Educational Requirements">Educational Requirements</option>
+                                        <option value="Salary Information">Salary Information</option>
                                         <option value="List of Institutions">List of Institutions</option>
                                         <option value="Cost of Education">Cost of Education</option>
                                         <option value="Job Resources">Job Resources</option>

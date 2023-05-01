@@ -14,9 +14,9 @@ GET http://localhost:3000/jobtitlecheck/dog HTTP/1.1
 ###
 GET http://localhost:3000/edrequirements/software%20engineer HTTP/1.1
 
-// READ: GET Request: Retrieve a list of institutions to become a lawyer in CA
+// READ: GET Request: Retrieve a list of institutions to become a swe in CA
 ###
-GET http://localhost:3000/institutions/lawyer/CA HTTP/1.1
+GET http://localhost:3000/institutions/software%20engineer/CA HTTP/1.1
 
 // READ: GET Request: Retrieve the median cost of education to become a software engineer in CA
 ###

@@ -26,7 +26,7 @@ function InputForm({jobTitle, setJobTitle, setLocation}) {
                     className="locationInput"
                     id="location"
                     required>
-                        <option value="AL" selected>AL</option>
+                        <option value="AL">AL</option>
                         <option value="AK">AK</option>
                         <option value="AZ">AZ</option>
                         <option value="AR">AR</option>
@@ -107,7 +107,7 @@ function LastDescriptionButtonDisabled({history}) {
     )
 }
 
-const getJobDescription = async (isJobTitle, setIsJobTitle, jobTitle, setSubmitJobTitle, history, location, setDescriptions, setIsSearch, setDidSubmit) => {
+const getJobDescription = async (isJobTitle, setIsJobTitle, jobTitle, setSubmitJobTitle, history, location, setDescriptions, setIsSearch, setDidSubmit, options) => {
 
     if (jobTitle === '' || jobTitle === undefined) {
         setIsSearch(false)
@@ -127,69 +127,63 @@ const getJobDescription = async (isJobTitle, setIsJobTitle, jobTitle, setSubmitJ
             history.push('/job-not-found');
         }
         else if (responseObject === true) {
-            
-            response = await fetch(`/dailywork/${jobTitle}`);
-            const dailyWork = await response.json();
-            
-            response = await fetch(`/edrequirements/${jobTitle}`);
-            const edRequirements = await response.json();
-            
-            response = await fetch(`/salary/${jobTitle}/${location}`);
-            const salary = await response.json();
-            const descriptions = {dailyWork: dailyWork, edRequirements:edRequirements, salary:salary};
+
+            const descriptions = {};
+            for(let i = 0; i < options.length; i++) {
+                if (options[i] === "Daily Work") {
+                    response = await fetch(`/dailywork/${jobTitle}`);
+                    const dailyWork = await response.json();
+                    descriptions.dailyWork = dailyWork;
+                }
+                else if (options[i] === "Salary Information") {
+                    response = await fetch(`/salary/${jobTitle}/${location}`);
+                    const salary = await response.json();
+                    descriptions.salary = salary;
+                }
+                else if (options[i] === "Educational Requirements") {
+                    response = await fetch(`/edrequirements/${jobTitle}`);
+                    const edRequirements = await response.json();
+                    descriptions.edRequirements = edRequirements;
+                }
+                else if (options[i] === "List of Institutions") {
+                    response = await fetch(`/institutions/${jobTitle}/${location}`);
+                    const institutions = await response.json();
+                    descriptions.institutions = institutions;
+                }
+                else if (options[i] === "Cost of Education") {
+                    response = await fetch(`/educationcost/${jobTitle}/${location}`);
+                    const edCost = await response.json();
+                    descriptions.edCost = edCost;
+                }
+                else if (options[i] === "Job Resources") {
+                    response = await fetch(`/jobopenings/${jobTitle}/${location}`);
+                    const jobResources = await response.json();
+                    descriptions.jobResources = jobResources;
+                }
+                else if (options[i] === "Company List") {
+                    response = await fetch(`/jobcompanies/${jobTitle}/${location}`);
+                    const companyList = await response.json();
+                    descriptions.companyList = companyList;
+                }
+                else if (options[i] === "Relavent Skills") {
+                    response = await fetch(`/jobskills/${jobTitle}`);
+                    const jobSkills = await response.json();
+                    descriptions.jobSkills = jobSkills;
+                }
+            }
+
             setDescriptions(descriptions);
-            
             setIsJobTitle(true);
             setIsSearch(false);
             setDidSubmit(false);
 
             history.push('/descriptions');
 
-            {/* IMPLEMENT LATER
-            for(let i = 0; i < options.length; i++) {
-                if (options[i] === "Daily Work") {
-                    response = await fetch(`/dailywork/${jobTitle}`);
-                    const dailyWork = await response.json();
-                }
-                else if (options[i] === "Median Salary") {
-                    response = await fetch(`/salary/${jobTitle}/${location}`);
-                    const salary = await response.json();
-                }
-                else if (options[i] === "Educational Requirements") {
-                    response = await fetch(`/edrequirements/${jobTitle}`);
-                    const edRequirements = await response.json();
-                }
-                else if (options[i] === "List of Institutions") {
-                    response = await fetch(`/institutions/${jobTitle}/${location}`);
-                    const institutions = await response.json();
-                }
-                else if (options[i] === "Cost of Education") {
-                    response = await fetch(`/educationcost/${jobTitle}/${location}`);
-                    const edCost = await response.json();
-                }
-                else if (options[i] === "Job Resources") {
-                    response = await fetch(`/jobopenings/${jobTitle}/${location}`);
-                    const jobResources = await response.json();
-                }
-                else if (options[i] === "Company List") {
-                    response = await fetch(`/jobcompanies/${jobTitle}/${location}`);
-                    const companyList = await response.json();
-                }
-                else if (options[i] === "Relavent Skills") {
-                    response = await fetch(`/jobskills/${jobTitle}`);
-                    const companyList = await response.json();
-                }
-            }
-
-            setIsSearch(false);
-            setDidSubmit(false);
-
-            history.push('/descriptions');
-
-            */}
+            
             
         }
     }
 }
+
 
 export {LoadingText, InputForm, LastDescriptionButtonEnabled, LastDescriptionButtonDisabled, getJobDescription}
