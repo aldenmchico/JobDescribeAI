@@ -78,10 +78,6 @@ const getInstitutions = async (_jobtitle, _state) => {
     const prompt = `Give me a list of 5 institutions that I can attend to receive and education to become a ${_jobtitle} in the state of ${_state}
                     with a link to the institution's home website
                     (just the list with no other context)`
-    /*
-    const prompt = `Provide me a list of html <a> elements (only the list with no other context) of 5 places to learn to become a ${_jobtitle} in the state of ${_state} \
-                    with the link to the institution's website as href and the institution's name as the text in the anchor tag. Do not include target attributes`;
-    */
     let result;
     await openai.createChatCompletion({
         model: "gpt-3.5-turbo",

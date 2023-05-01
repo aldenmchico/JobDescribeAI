@@ -1,7 +1,7 @@
 function LoadingText({jobTitle, location}){
     return (
         <div className="LoadingText">
-            <p>Job description for {jobTitle} in the state of {location} is loading...</p>
+            <p>Job description for {jobTitle} in the state of {location} is loading. This will take a moment. Please be patient while the page loads.</p>
         </div>
     );
 }

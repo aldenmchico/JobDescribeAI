@@ -3,7 +3,7 @@ import { React, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // Import stylesheet
-//import './App.css';
+import './App.css';
 
 // Import Pages
 import HomePage from './pages/HomePage';
@@ -32,7 +32,7 @@ function App() {
       <Router>
         <div className="container">
           <header>
-            <h1 className="websiteName">JobDescribe.ai</h1>
+            <h1 className="headerWebsiteName">JobDescribe.ai</h1>
             <p className="headerDescription">Learn About Your Next Passion.</p>
           </header>
 
@@ -68,12 +68,6 @@ function App() {
             
             
             </main>
-
-          {/*
-          <div className="navigation">
-            <Navigation />
-          </div>
-           */}
 
           <footer>
             <p>&copy; 2022 Alden Chico</p>

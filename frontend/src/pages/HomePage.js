@@ -17,8 +17,8 @@ export const HomePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle
 
     return(
         <>  
-            <article className="JobInput">
-                <h2 className="pageDescriptor">Enter a job title and location. We'll generate a comprehensive job description from your entry.</h2>
+            <article className="homePage">
+                <h2 className="mainPageDescriptor">Enter a job title and location. We'll generate a comprehensive job description from your entry.</h2>
                 <div>
                 <form onSubmit={(e) => { e.preventDefault();}}>
 

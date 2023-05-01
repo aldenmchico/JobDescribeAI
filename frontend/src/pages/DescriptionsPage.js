@@ -110,38 +110,25 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                 <>
                     <h2 className="descriptionTitle">List of Relavent Companies</h2>
                     <ol className="description">
-                        <li><a href={companyLinks["0"]} target="_blank">{companyNames["0"]}</a></li>
-                        <li><a href={companyLinks["1"]} target="_blank">{companyNames["1"]}</a></li>
-                        <li><a href={companyLinks["2"]} target="_blank">{companyNames["2"]}</a></li>
-                        <li><a href={companyLinks["3"]} target="_blank">{companyNames["3"]}</a></li>
-                        <li><a href={companyLinks["4"]} target="_blank">{companyNames["4"]}</a></li>
+                        <li><a href={companyLinks["0"]} rel="noreferrer" target="_blank">{companyNames["0"]}</a></li>
+                        <li><a href={companyLinks["1"]} rel="noreferrer" target="_blank">{companyNames["1"]}</a></li>
+                        <li><a href={companyLinks["2"]} rel="noreferrer" target="_blank">{companyNames["2"]}</a></li>
+                        <li><a href={companyLinks["3"]} rel="noreferrer" target="_blank">{companyNames["3"]}</a></li>
+                        <li><a href={companyLinks["4"]} rel="noreferrer" target="_blank">{companyNames["4"]}</a></li>
                     </ol>
                     <br></br><br></br>
                 </>
             }
-            
-             
-            {/*
-            {descriptions.companyList !== undefined && 
-                <>
-                    <h2 className="descriptionTitle">List of Relavent Companies</h2>
-                    <p className="description">{descriptions.companyList}</p>
-                    <br></br> <br></br>
-                </>
-            }
-            */} 
-            
-           
 
             {descriptions.jobResources !== undefined && 
                 <>
                     <h2 className="descriptionTitle">Online Job Search Resources</h2>
                     <ol className="description">
-                        <li><a href={jobLinks["0"]} target="_blank">{jobLinks["0"]}</a></li>
-                        <li><a href={jobLinks["1"]} target="_blank">{jobLinks["1"]}</a></li>
-                        <li><a href={jobLinks["2"]} target="_blank">{jobLinks["2"]}</a></li>
-                        <li><a href={jobLinks["3"]} target="_blank">{jobLinks["3"]}</a></li>
-                        <li><a href={jobLinks["4"]} target="_blank">{jobLinks["4"]}</a></li>
+                        <li><a href={jobLinks["0"]} rel="noreferrer" target="_blank">{jobLinks["0"]}</a></li>
+                        <li><a href={jobLinks["1"]} rel="noreferrer" target="_blank">{jobLinks["1"]}</a></li>
+                        <li><a href={jobLinks["2"]} rel="noreferrer" target="_blank">{jobLinks["2"]}</a></li>
+                        <li><a href={jobLinks["3"]} rel="noreferrer" target="_blank">{jobLinks["3"]}</a></li>
+                        <li><a href={jobLinks["4"]} rel="noreferrer" target="_blank">{jobLinks["4"]}</a></li>
                     </ol>
                     <br></br><br></br>
                 </>
@@ -168,11 +155,11 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                 <>
                     <h2 className="descriptionTitle">List of Institutions</h2>
                     <ol className="description">
-                        <li><a href={institutionLinks["0"]} target="_blank">{institutionNames["0"]}</a></li>
-                        <li><a href={institutionLinks["1"]} target="_blank">{institutionNames["1"]}</a></li>
-                        <li><a href={institutionLinks["2"]} target="_blank">{institutionNames["2"]}</a></li>
-                        <li><a href={institutionLinks["3"]} target="_blank">{institutionNames["3"]}</a></li>
-                        <li><a href={institutionLinks["4"]} target="_blank">{institutionNames["4"]}</a></li>
+                        <li><a href={institutionLinks["0"]} rel="noreferrer" target="_blank">{institutionNames["0"]}</a></li>
+                        <li><a href={institutionLinks["1"]} rel="noreferrer" target="_blank">{institutionNames["1"]}</a></li>
+                        <li><a href={institutionLinks["2"]} rel="noreferrer" target="_blank">{institutionNames["2"]}</a></li>
+                        <li><a href={institutionLinks["3"]} rel="noreferrer" target="_blank">{institutionNames["3"]}</a></li>
+                        <li><a href={institutionLinks["4"]} rel="noreferrer" target="_blank">{institutionNames["4"]}</a></li>
                     </ol>
                     <br></br><br></br>
                 </>

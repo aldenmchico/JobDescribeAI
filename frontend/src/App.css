@@ -2,14 +2,9 @@
 /*   ----- Imports  -----  */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;900&family=Lato&display=swap');
 
-
-/* PAGE LAYOUT 
-Body width / height are defined so they take up 100% of the viewport width/height
-The "container" class is a div element that contains the header, main, navigatino, and footer for the webpage
-This div element allows use of grid layout for the webpage display
-*/
+/* CSS for HTML Body */
 body {
-  background-color: #000000;
+  background-color: #FAF9F6;
   color: #000000;
   border: 1px solid #000000;
   font-size: 1.75vh;
@@ -22,108 +17,90 @@ body {
   text-align:center;
 }
 
-
-/*"container" class is a div element that is the parent container for child elements header, main, navigation, and footer*/
-.container {
-  display: grid;
-  height: 100vh;
-  row-gap: 10px;
-  grid-template-rows: repeat(17, 1fr);
-  grid-template-columns: repeat(10, 1fr);
-}
-
-/* HEADER AND FOOTER */
+/* CSS for React Header*/
 header {
-  display: grid;
-  place-items: center;
-  grid-row-start: 1;
-  grid-row-end: 5;
-  grid-column-start: 1;
-  grid-column-end: 11;
-
   background-color: #FAF9F6;
   color: #000000;
-  border: 0px solid #000000;
-  font-size: 10vh;
   font-weight: bold;
-  margin: 0%;
-  padding: 0%;
+  border-bottom: 1px solid #000000;
 }
-
-.websiteName {
+.headerWebsiteName {
   font-size: 10vh;
-  font-weight: bold;
   padding: 0%;
   margin: 0%
 }
-/* headerDescription is a p element, but don't want the font-size to be the same as a normal p element*/
 .headerDescription {
-  color: #000000;
   font-size: 4vh;
   font-weight: bold;
   padding: 0%;
-  margin-top: -4vh;
+  margin-top: -0.5vh;
 }
 
-footer {
-  display: grid;
-  place-items: center;
-  grid-row-start: 17;
-  grid-row-end: 18;
-  grid-column-start: 1;
-  grid-column-end: 11;
-
-  background-color: #FAF9F6;
-  color: #000000;
-  border: 0px solid #000000;
-  font-size: 2vh;
-  font-weight: bold;
-  margin: 0%;
-  padding: 0%;
-}
-
-/* MAIN */
+/* CSS for React Main */
 main {
-  display: grid;
-  place-items: center;
-  grid-row-start: 5;
-  grid-row-end: 17;
-  grid-column-start: 1;
-  grid-column-end: 11;
-  justify-items: stretch;
-
   background-color: #FAF9F6;
   color: #000000;
-  border: 1px solid #000000;
-  padding: 0;
-  overflow:"auto"
 }
-.pageDescriptor {
-  font-size: 4vh;
-  padding: 0%;
-  margin: -6% 0% 0% 0%;
+.mainPageDescriptor {
+  font-size: 3vh;
+  margin-bottom: -0.3%
 }
 
-.customizeDescriptor {
-  font-size: 6vh;
-  padding: 0%;
-  margin: 1% 0% -0.5% 0%;
+
+/* CSS for Home Page */
+.homePage{
+  margin-top: 10%;
+  margin-bottom: 19%
 }
 
+/* CSS for Descriptions Page */
+.descriptionTitle  {
+  text-align: left;
+  margin: 0% 0% 0% 1%
+}
 .description {
   text-align: left;
   margin: 1% 5% 0% 10%;
 }
 
-.descriptionTitle  {
-  text-align: left;
-  margin: 0% 0% 0% 1%
+/* CSS for Loading Text*/
+.LoadingText {
+  font-size: 2vh;
 }
 
-/* TABLE */
-/* Need to use a div wrapper in order for table scroll to work correctly */
+/* CSS for HTML Forms */
+label {
+  font-size: 30px;
+  font-weight: 600;
+  margin-top:20px;
+  margin: 1%;
+}
+input {
+  font-family: 'Lato', serif;
+  color: #000000;
+  font-size: 110%;
+  margin: 2% 0% 0% 0%
+}
+select {
+  font-family: 'Lato', serif;
+  color: #000000;
+  font-size: 110%;
+  margin: 2% 1% 0% 0.25%
+}
+button {
+  margin-bottom: 1%;
+  font-size: 110%;
+}
+
+/* CSS for Customize Page */
+.customizeDescriptor {
+  font-size: 5vh;
+  margin-bottom: -0.8%
+}
+
+/* CSS for Customize Options Table*/
 .wrapper {
-  height: 55vh;
+  height:45vh;
   overflow:hidden;
   overflow-y: scroll;
   margin: 1% 1% 1% 1%;
@@ -153,25 +130,15 @@ th {
 tr:nth-child(odd){background-color:#faf9f685;}
 tr:nth-child(even){background-color:#FAF9F6;}
 
-
-/* FORM */
-label {
-  font-size: 30px;
-  font-weight: 600;
-  margin-top:20px;
-  margin: 1%;
-}
-input {
-  font-family: 'Lato', serif;
-  color: #000000;
-  font-size: 110%;
-  margin: 2% 0% 0% 0%
-}
-select {
-  font-family: 'Lato', serif;
-  color: #000000;
-  font-size: 110%;
-  margin: 2% 3% 0% 0.25%
+/* CSS for the footer */
+footer {
+  font-size: 2vh;
+  font-weight: bold;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-top: 1px solid #000000;
 }
 
 
