@@ -25,6 +25,8 @@ function App() {
                                                               ]);
                                                             
   const [isJobTitle, setIsJobTitle]                 = useState(false);
+  const [didGenerate, setDidGenerate]               = useState(false);                                                          
+
   return (
     <>
       <Router>
@@ -39,24 +41,25 @@ function App() {
             
             <Route path="/" exact>
               <HomePage isJobTitle={isJobTitle} setIsJobTitle={setIsJobTitle} submitJobTitle={submitJobTitle} setSubmitJobTitle={setSubmitJobTitle} 
-                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} options={options}/>
+                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} options={options} didGenerate={didGenerate}/>
             </Route>
             
             
             <Route path="/descriptions">
               <DescriptionsPage isJobTitle={isJobTitle} setIsJobTitle={setIsJobTitle} submitJobTitle={submitJobTitle} setSubmitJobTitle={setSubmitJobTitle} 
-                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} descriptions={descriptions} options={options}/>
+                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} descriptions={descriptions} options={options} 
+                setDidGenerate={setDidGenerate}/>
             </Route>
 
             <Route path="/job-not-found">
               <JobNotFoundPage isJobTitle={isJobTitle} setIsJobTitle={setIsJobTitle} submitJobTitle={submitJobTitle} setSubmitJobTitle={setSubmitJobTitle}
-                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} options={options}/>
+                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} options={options} didGenerate={didGenerate}/>
             </Route>
             
             
             <Route path="/customize-page">
               <CustomizePage isJobTitle={isJobTitle} setIsJobTitle={setIsJobTitle} setSubmitJobTitle={setSubmitJobTitle} 
-                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} options={options} setOptions={setOptions}/>
+                jobTitle={jobTitle} setJobTitle={setJobTitle} setDescriptions={setDescriptions} options={options} setOptions={setOptions} didGenerate={didGenerate}/>
             </Route>
 
             <Route path="/about">

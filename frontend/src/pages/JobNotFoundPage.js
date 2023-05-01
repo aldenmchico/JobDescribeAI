@@ -7,7 +7,7 @@ import {AiOutlineSearch, AiOutlineHourglass} from 'react-icons/ai'
 // Import Functions
 import * as PageFunction from '../functions/PageFunctions';
 
-export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setSubmitJobTitle, jobTitle, setJobTitle, setDescriptions, options}) => {
+export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setSubmitJobTitle, jobTitle, setJobTitle, setDescriptions, options, didGenerate}) => {
 
     // State variables that will be set when the user edits the fields
     const [location, setLocation]           = useState("AL");
@@ -21,29 +21,8 @@ export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setS
                 <p className="pageDescriptor">Could not generate a job description for {submitJobTitle}</p>
                 <div>
                     <form onSubmit={(e) => { e.preventDefault();}}>
-                        <label for="jobTitle">Job Title</label>
-                            <input
-                                type="text"
-                                placeholder="Get a Job Description..."
-                                value={jobTitle}
-                                onChange={e => setJobTitle(e.target.value)}
-                                className="jobInput" 
-                                id="jobTitle" />
 
-                        <label for="location">Location</label>
-                        <select 
-                                type="text"
-                                name="location"
-                                onChange={e => setLocation(e.target.value)} 
-                                className="locationInput"
-                                id="location"
-                                required>
-                                    <option value="AL" selected>AL</option>
-                                    <option value="AK">AK</option>
-                                    <option value="AZ">AZ</option>
-                                    <option value="AR">AR</option>
-                                    <option value="CA">CA</option>
-                        </select>
+                        <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
                         
                         {isSearch? <AiOutlineHourglass size={50}/>:
                         <AiOutlineSearch size={50} onClick={()=>{
@@ -63,6 +42,10 @@ export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setS
                         id="submit"
                         onClick={() => {history.push('/customize-page')}}
                     >Customize Options</button>
+
+                    {didGenerate && <PageFunction.LastDescriptionButtonEnabled history={history}/>}
+                    {!didGenerate && <PageFunction.LastDescriptionButtonDisabled history={history}/>}
+
                     <label for="home"></label>
                         <button
                             type="submit"
@@ -71,7 +54,7 @@ export const JobNotFoundPage = ({isJobTitle, setIsJobTitle, submitJobTitle, setS
                         >Home</button>
                     </form>
                     
-                    {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle}/>}
+                    {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
                 </div>
                 
             </article>

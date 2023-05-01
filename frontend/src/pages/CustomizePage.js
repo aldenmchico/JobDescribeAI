@@ -10,7 +10,7 @@ import * as PageFunction from '../functions/PageFunctions';
 // Import React components
 import OptionsList  from '../components/OptionsList';
 
-export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle, setJobTitle, setDescriptions, options, setOptions}) => {
+export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle, setJobTitle, setDescriptions, options, setOptions, didGenerate}) => {
 
     // State variables that will be set when the user edits the field
     const [location, setLocation]           = useState("AL");
@@ -40,56 +40,32 @@ export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, job
                 <h2 className="customizeDescriptor">Customize Options</h2>
                 <div>
                 <form onSubmit={(e) => { e.preventDefault();}}>
-                    <label for="jobTitle">Job Title</label>
-                        <input
-                            type="text"
-                            placeholder="Get a Job Description..."
-                            value={jobTitle}
-                            onChange={e => setJobTitle(e.target.value)}
-                            className="jobInput" 
-                            id="jobTitle" />
 
-                    <label for="location">Location</label>
-                    <select 
-                            type="text"
-                            name="location"
-                            onChange={e => setLocation(e.target.value)} 
-                            className="locationInput"
-                            id="location"
-                            required>
-                                <option value="AL" selected>AL</option>
-                                <option value="AK">AK</option>
-                                <option value="AZ">AZ</option>
-                                <option value="AR">AR</option>
-                                <option value="CA">CA</option>
-                    </select>
+                    <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
                     
                     {isSearch? <AiOutlineHourglass size={50}/>:
                     <AiOutlineSearch size={50} onClick={()=>{
                         setDidSubmit(true);
                         setIsSearch(!isSearch);
-                        PageFunction.getJobDescription(isJobTitle, setIsJobTitle, setSubmitJobTitle, history, location, setDescriptions, setIsSearch, setDidSubmit, options);
+                        PageFunction.getJobDescription(isJobTitle, setIsJobTitle, jobTitle, setSubmitJobTitle, 
+                            history, location, setDescriptions, setIsSearch, setDidSubmit, options);
                         }} />
                     }
 
                     <div>
                     
-                    <label for="lastDescription"></label>
-                    <button
-                        type="submit"
-                        id="lastDescription"
-                        onClick={() => {history.push('/descriptions')}}
-                    >Last Search</button>
+                        {didGenerate && <PageFunction.LastDescriptionButtonEnabled history={history}/>}
+                        {!didGenerate && <PageFunction.LastDescriptionButtonDisabled history={history}/>}
 
-                    <label for="home"></label>
-                    <button
-                        type="submit"
-                        id="home"
-                        onClick={() => {history.push('/')}}
-                    >Home</button>
+                        <label for="home"></label>
+                        <button
+                            type="submit"
+                            id="home"
+                            onClick={() => {history.push('/')}}
+                        >Home</button>
                     </div>
 
-                    {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle}/>}
+                    {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
 
                     <OptionsList
                         options={options}

@@ -5,7 +5,8 @@ import {AiOutlineSearch, AiOutlineHourglass} from 'react-icons/ai'
 // Import Functions
 import * as PageFunction from '../functions/PageFunctions';
 
-export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle, setJobTitle, setDescriptions, descriptions, options}) => {
+export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle, setJobTitle, 
+                                    setDescriptions, descriptions, options, setDidGenerate}) => {
     
     // State variables that will be set when the user edits the fields
     const [location, setLocation]           = useState("AL");
@@ -13,33 +14,16 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
     const [didSubmit, setDidSubmit]         = useState(false);
     const history = useHistory();
     
+    // After loading a Descriptions Page, set didGenerate to true to enable the Last Search button
+    setDidGenerate(true);
+    
     return (
         <>
         <article className="descriptionsPage">
 
             <form onSubmit={(e) => { e.preventDefault();}}>
-                    <label for="jobTitle">Job Title</label>
-                        <input
-                            type="text"
-                            placeholder="Get a Job Description..."
-                            value={jobTitle}
-                            onChange={e => setJobTitle(e.target.value)} 
-                            id="jobTitle"
-                            required />
-
-                    <label for="location">Location</label>
-                    <select 
-                            type="text"
-                            name="location"
-                            onChange={e => setLocation(e.target.value)} 
-                            id="location"
-                            required>
-                                <option value="AL" selected>AL</option>
-                                <option value="AK">AK</option>
-                                <option value="AZ">AZ</option>
-                                <option value="AR">AR</option>
-                                <option value="CA">CA</option>
-                    </select>
+                    
+                    <PageFunction.InputForm jobTitle={jobTitle} setJobTitle={setJobTitle} setLocation={setLocation}/>
 
                     {isSearch? <AiOutlineHourglass size={50}/>:
                     <AiOutlineSearch size={50} onClick={()=>{
@@ -51,7 +35,7 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                     }
             </form>
 
-            {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle}/>}
+            {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
             
             <h2 className="descriptionTitle">Estimated Median Salary</h2>
             <p className="description">{descriptions.salary}</p>
