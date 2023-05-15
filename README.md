@@ -13,3 +13,14 @@ To try out JobDescribe.ai for yourself, follow these steps:
 </ol>
 </br>
 JobDescribe.ai is a personal project that I created to learn more about how OpenAI can be used to integrate into my future personal projects and I hope by making the project open source, others can learn how they can use OpenAI for their projects as well.
+<h1> Website Screenshots </h1>
+<h3> Home Page </h3>
+<img src="https://github.com/aldenmchico/JobDescribeAI/assets/50260762/c45812a1-1f91-4da1-b674-692da9181832"></img>
+<h3> Loading A Random Job Description </h3>
+<img src="https://github.com/aldenmchico/JobDescribeAI/assets/50260762/ef154b80-ca24-4a1e-a78a-aa5c94c64d99"></img>
+<h3> Job Description Page </h3>
+<img src="https://github.com/aldenmchico/JobDescribeAI/assets/50260762/fe7c0be4-511f-45cb-af24-af3463cc4927"></img>
+<h3> Customize Options Page </h3>
+<img src="https://github.com/aldenmchico/JobDescribeAI/assets/50260762/28c5b7be-b404-4f6d-a355-ea9cc1cc10ce"></img>
+
+
