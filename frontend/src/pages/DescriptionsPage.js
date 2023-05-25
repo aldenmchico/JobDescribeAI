@@ -21,6 +21,7 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
     let institutionNames;
     let institutionLinks = {};
     let linkBreak, numberBreak;
+
     if (descriptions.institutions !== undefined) {
         
         institutionNames = descriptions.institutions.split("</br>");
@@ -211,6 +212,22 @@ export const DescriptionsPage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, 
                     id="home"
                     onClick={() => {history.push('/')}}
                 >Home</button>
+                <label for="random"></label>
+                <button
+                    type="submit"
+                    id="random"
+                    onClick={
+                        async () => {
+                            let randomJobTitle = await fetch(`/RandomJobTitle`);
+                            randomJobTitle = await randomJobTitle.json();
+                            setJobTitle(randomJobTitle);
+                            setDidSubmit(true);
+                            setIsSearch(!isSearch);
+                            PageFunction.getJobDescription(isJobTitle, setIsJobTitle, randomJobTitle, setSubmitJobTitle, 
+                                    history, location, setDescriptions, setIsSearch, setDidSubmit, options);
+                        }
+                    }
+                >Get Lucky!</button>
             </form>
         </article>
         </>

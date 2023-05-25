@@ -61,6 +61,28 @@ export const HomePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, jobTitle
                         >About</button>
                     </form>
                     
+                    <h2 className="mainPageDescriptor">Don't have a job title in mind? Generate a job description for a random job title instead.</h2>
+                    <br></br>
+                    
+                    {/* Button to perform a random job title search */}
+                    <form onSubmit={(e) => { e.preventDefault();}}>
+                        <button
+                            type="submit"
+                            id="random"
+                            onClick={
+                                async () => {
+                                    let randomJobTitle = await fetch(`/RandomJobTitle`);
+                                    randomJobTitle = await randomJobTitle.json();
+                                    setJobTitle(randomJobTitle);
+                                    setDidSubmit(true);
+                                    setIsSearch(!isSearch);
+                                    PageFunction.getJobDescription(isJobTitle, setIsJobTitle, randomJobTitle, setSubmitJobTitle, 
+                                         history, location, setDescriptions, setIsSearch, setDidSubmit, options);
+                                }
+                            }
+                        >Get Lucky!</button>
+                    </form>
+                    
                     {/* Displays Loading Text after submitting the form for a new job description page */}
                     {didSubmit && <PageFunction.LoadingText jobTitle={jobTitle} location={location}/>}
 

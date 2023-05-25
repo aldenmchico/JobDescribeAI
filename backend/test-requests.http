@@ -10,6 +10,10 @@ GET http://localhost:3000/jobtitlecheck/software%20engineer HTTP/1.1
 ###
 GET http://localhost:3000/jobtitlecheck/dog HTTP/1.1
 
+// READ: GET Request: Call Random Job Title Microservice
+###
+GET http://localhost:3000/RandomJobTitle HTTP/1.1
+
 // READ: GET Request: Check the educational requirements for a software engineer
 ###
 GET http://localhost:3000/edrequirements/software%20engineer HTTP/1.1

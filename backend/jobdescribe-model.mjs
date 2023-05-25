@@ -1,6 +1,7 @@
 // Import dependencies.
 import { Configuration, OpenAIApi } from "openai";
 import 'dotenv/config';
+import fetch from 'node-fetch'
 
 // Configure connection to OpenAI's API
 const configuration = new Configuration({
@@ -38,6 +39,13 @@ const checkJobTitle = async (_jobtitle) => {
     });
     return {"result": result};
 }
+
+// Retrieve random job title
+const callRandomJobTitleMicroservice = async () => {
+    let result = await fetch('http://localhost:8001/RandomJobTitle')
+    result = await result.text()
+    return {"result": result}
+};
 
 // Retrieve the educational requirements for a given job title.
 const getDailyWork = async (_jobtitle) => {
@@ -104,6 +112,15 @@ const getEducationCost = async (_jobtitle, _state) => {
     })
     .then(aiResult => {
         result = aiResult.data.choices[0].message.content.replaceAll("\n", "</br>");
+        const regex = /\$\d+(,\d{3})*(\.\d{2})?/;
+        const match = result.match(regex);
+
+        if (match) {
+            result = match[0];
+        }
+        else {
+            result = `Unable to provide educational cost information for ${_jobtitle} at this moment.`
+        }
     });
     return {"result": result};
 }
@@ -120,6 +137,15 @@ const getMedianSalary = async (_jobtitle, _state) => {
     })
     .then(aiResult => {
         result = aiResult.data.choices[0].message.content;
+        const regex = /\$\d+(,\d{3})*(\.\d{2})?/;
+        const match = result.match(regex);
+
+        if (match) {
+            result = match[0];
+        }
+        else {
+            result = `Unable to provide median salary information for ${_jobtitle} at this moment.`
+        }
     });
     return {"result": result};
 }
@@ -179,5 +205,6 @@ const getJobSkills = async (_jobtitle, _state) => {
 // DELETE model *****************************************
 
 // Exports for jobdescribe-controller
-export {checkJobTitle, getDailyWork, getEdRequirements, getInstitutions, getEducationCost, getMedianSalary, getJobOpenings, 
-        getCompanies, getJobSkills};
+export {checkJobTitle, callRandomJobTitleMicroservice, getDailyWork, getEdRequirements, 
+            getInstitutions, getEducationCost, getMedianSalary, getJobOpenings, 
+            getCompanies, getJobSkills};

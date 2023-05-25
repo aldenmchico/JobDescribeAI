@@ -67,6 +67,24 @@ export const CustomizePage = ({isJobTitle, setIsJobTitle, setSubmitJobTitle, job
                             id="home"
                             onClick={() => {history.push('/')}}
                         >Home</button>
+
+                        {/* Button to perform a random job title search */}
+                        <label for="random"></label>
+                        <button
+                            type="submit"
+                            id="random"
+                            onClick={
+                                async () => {
+                                    let randomJobTitle = await fetch(`/RandomJobTitle`);
+                                    randomJobTitle = await randomJobTitle.json();
+                                    setJobTitle(randomJobTitle);
+                                    setDidSubmit(true);
+                                    setIsSearch(!isSearch);
+                                    PageFunction.getJobDescription(isJobTitle, setIsJobTitle, randomJobTitle, setSubmitJobTitle, 
+                                            history, location, setDescriptions, setIsSearch, setDidSubmit, options);
+                                }
+                            }
+                        >Get Lucky!</button>
                     </div>
 
                     {/* Displays Loading Text after submitting the form for a new job description page */}

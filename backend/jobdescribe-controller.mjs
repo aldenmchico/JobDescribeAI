@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import * as jdModel from './jobdescribe-model.mjs';
+import fetch from 'node-fetch'
 
 // Configure express server
 const PORT = process.env.PORT;
@@ -27,12 +28,29 @@ app.use(express.json());
             req.params._jobtitle
             )
             .then(isJobTitle => {
-                res.status(201).json(isJobTitle.result);
+                res.status(201).json(isJobTitle.result); 
             })
             // Catch will occur if one of the fields is invalid
             .catch(error => {
                 res.status(400).json(error);
             });
+        }
+    );
+
+    /**
+     * GET /RandomJobTitle 
+     * Request: No parameters, request body is empty
+     * Response: Success - Request returns randomly generated job title using microservice
+            // Body: text/html Randomly generated job title string
+            // Status Code: 200
+    * Response: Failure - Request is invalid
+            // Body: Server Error - failure to generate job title
+            // Status Code: 500
+    */
+
+    app.get('/RandomJobTitle', async (req, res) => {
+            let randomJob = await jdModel.callRandomJobTitleMicroservice();
+            res.status(201).json(randomJob.result);
         }
     );
 
