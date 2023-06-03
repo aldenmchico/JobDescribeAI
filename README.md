@@ -1,5 +1,8 @@
 # JobDescribe.ai
-JobDescribe.ai is a web-tool that generates job descriptions powered by OpenAI's API. To use JobDescribe.ai, the user simply enters a career field that they're interested in and a US state as a location, and JobDescribe.ai generates information related to the job and location that the user entered. Information such as day-to-day job descriptions, relavent job skills, job listing websites, educational requirements, and educational institutions are all generated in real-time using OpenAI to produce useful information that the user can utilize for their situational awareness.
+JobDescribe.ai is a web-tool powered by OpenAI's APIthat generates relevant information about any job title that the user can think of. To use JobDescribe.ai, the user simply enters a career field that they're interested in and a US state as a location, and JobDescribe.ai generates information related to the job and location that the user entered. Information such as day-to-day job descriptions, relavent job skills, job listing websites, educational requirements, and educational institutions are all generated in real-time using OpenAI to produce useful information that the user can utilize for their situational awareness.
+
+[![VIDEO_THUMBNAIL](https://github.com/aldenmchico/JobDescribeAI/assets/50260762/58c92528-a285-49cf-b90f-b9489a8524bc)](https://media.oregonstate.edu/media/1_oxnz6hla)
+
 </br></br>
 To try out JobDescribe.ai for yourself, follow these steps:
 <ol>
